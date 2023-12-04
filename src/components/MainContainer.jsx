@@ -15,11 +15,11 @@ const MainContainer = () => {
 
   return (
     <div className="col-span-10 flex flex-col ">
-      <div className="flex my-2 mx-4">
+      {/* <div className="flex my-2 mx-4">
         {catList.map((item) => (
           <ButtonList name={item.name} link={item.link} />
         ))}
-      </div>
+      </div> */}
       <VideoContainer />
     </div>
   );

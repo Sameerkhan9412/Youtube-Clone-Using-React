@@ -1,112 +1,81 @@
-import React from 'react'
-import Comment from './CommentsList'
-import CommentsList from './CommentsList'
+
+import React, { useEffect, useState } from "react";
+import { calculateTimeAgo } from "../utils/constants";
+import { useSearchParams } from "react-router-dom";
+import { FiThumbsUp, FiThumbsDown } from "react-icons/fi";
+import { COMMENTS_API } from "../utils/constants";
+
+const Comment = ({ data }) => {
+  return (
+    <>
+      <div className="flex  p-2 rounded-lg my-2">
+        <img
+          className="w-12 h-12 rounded-full"
+          alt="user"
+          src={data?.snippet?.topLevelComment?.snippet?.authorProfileImageUrl}
+        />
+        <div className="px-3">
+          <div className="flex items-center">
+            <p className="font-bold">
+              {data?.snippet?.topLevelComment?.snippet?.authorDisplayName}
+            </p>
+            <p className="ml-2 text-xs text-gray-500 r">
+              {calculateTimeAgo(
+                data?.snippet?.topLevelComment?.snippet?.publishedAt
+              )}
+            </p>
+          </div>
+          <p>{data?.snippet?.topLevelComment?.snippet?.textDisplay}</p>
+          <div className="flex items-center">
+            <FiThumbsUp />
+            <p className="">{data?.snippet?.topLevelComment?.snippet?.likeCount}</p>{" "}
+            <FiThumbsDown className="ml-3" />{" "}
+            <p className="text-xs ml-5 font-semibold">Reply</p>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+const CommentList = ({ comments }) => {
+  //Disclaimer: Don't use indexes as keys
+  //Comment reply not found in API
+  return comments?.map((comment, index) => (
+    <div key={index}>
+      <Comment data={comment} />
+      <div className="pl-5 ml-5">
+        <CommentList comments={comment.replies} />
+      </div>
+    </div>
+  ));
+};
 
 const CommentsContainer = () => {
-    const commentsData=[
-        {
-            name:"sameer khan1",
-            text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, porro!",
-            replies:[
-                {
-                    name:"sameer khan",
-                    text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, porro!",
-                    replies:[
-                        {
-                            name:"sameer khan",
-                            text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, porro!",
-                            replies:[
-                                
-                            ]
-                        }   
-                    ]
-                },
-            ]
-        },
-        {
-            name:"sameer khan1",
-            text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, porro!",
-            replies:[
-                {
-                    name:"sameer khan",
-                    text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, porro!",
-                    replies:[
-                        {
-                            name:"sameer khan",
-                            text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, porro!",
-                            replies:[
-                                
-                            ]
-                        }   
-                    ]
-                },
-            ]
-        },
-        {
-            name:"sameer khan1",
-            text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, porro!",
-            replies:[
-                {
-                    name:"sameer khan",
-                    text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, porro!",
-                    replies:[
-                        {
-                            name:"sameer khan",
-                            text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, porro!",
-                            replies:[
-                                
-                            ]
-                        }   
-                    ]
-                },
-            ]
-        },
-        {
-            name:"sameer khan1",
-            text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, porro!",
-            replies:[
-                {
-                    name:"sameer khan",
-                    text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, porro!",
-                    replies:[
-                        {
-                            name:"sameer khan",
-                            text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, porro!",
-                            replies:[
-                                
-                            ]
-                        }   
-                    ]
-                },
-            ]
-        },
-        {
-            name:"sameer khan1",
-            text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, porro!",
-            replies:[
-                {
-                    name:"sameer khan",
-                    text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, porro!",
-                    replies:[
-                        {
-                            name:"sameer khan",
-                            text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, porro!",
-                            replies:[
-                                
-                            ]
-                        }   
-                    ]
-                },
-            ]
-        },
+  const [CommentsApi, setCommentsApi] = useState([]);
 
-    ]
+  const [searchParams] = useSearchParams();
+  const api_key=process.env.REACT_APP_YOUTUBE_KEY;
+
+  const VideoId = searchParams.get("v");
+
+  useEffect(() => {
+    getcomment();
+  }, []);
+
+  const getcomment = async () => {
+    const data = await fetch(COMMENTS_API+api_key+ "&videoId="+VideoId);
+    const json = await data.json();
+    console.log(json.items);
+    setCommentsApi(json.items);
+  };
+
   return (
-    <div className='m-5  p-2'>
-        <h1 className='text-2xl font-bold'>Comments:</h1>
-        <CommentsList comments={commentsData}/>
+    <div className="m-5 p-2">
+      <h1 className="text-l font-bold">{CommentsApi?.length} Comments</h1>
+      <CommentList comments={CommentsApi} />
     </div>
-  )
-}
+  );
+};
 
-export default CommentsContainer
+export default CommentsContainer;

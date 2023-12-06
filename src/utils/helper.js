@@ -21,20 +21,25 @@ const  nameList = [
     'Slash', 'Melt', 'Melted', 'Melting', 'Fell', 'Wolf', 'Hound',
     'Legacy', 'Sharp', 'Dead', 'Mew', 'Chuckle', 'Bubba', 'Bubble', 'Sandwich', 'Smasher', 'Extreme', 'Multi', 'Universe', 'Ultimate', 'Death', 'Ready', 'Monkey', 'Elevator', 'Wrench', 'Grease', 'Head', 'Theme', 'Grand', 'Cool', 'Kid', 'Boy', 'Girl', 'Vortex', 'Paradox'
   ];
+
+  export const homePageButtonNameList=[
+    "Entertenment","Music","Computer Science","Bollywood Music","Gaming","Thoughts","Indian Pop Music","Gadgets","Live","News","Cricket","Recent Uploaded","New For You"
+  ]
+
 export const  randomNameGenerater=()=> {
-    return nameList[Math.floor(Math.random() * nameList.length)];
-        };
+  return nameList[Math.floor(Math.random() * nameList.length)];
+};
 
 
 
-        export function generateRandomMsg(length) {
-            let result = '';
-            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            const charactersLength = characters.length;
-            let counter = 0;
-            while (counter < length) {
-              result += characters.charAt(Math.floor(Math.random() * charactersLength));
-              counter += 1;
-            }
-            return result;
-        }
+export function generateRandomMsg(length) {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < length) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      counter += 1;
+    }
+    return result;
+}

@@ -8,12 +8,11 @@ const LiveChat = () => {
   const [liveMessage, setLiveMessage] = useState("");
   const dispatch = useDispatch();
   const chatMessagesList = useSelector((store) => store.chat.messages);
-  console.log(chatMessagesList);
 
   useEffect(() => {
     const i = setInterval(() => {
       // API polling
-      console.log("API POLLING IS NOW");
+      // console.log("API POLLING IS NOW");
       dispatch(
         addMessage({
           name: randomNameGenerater(),
@@ -25,8 +24,7 @@ const LiveChat = () => {
   });
   return (
     <>
-      <d
-        iv
+      <div
         className="border-2 border-black w-[500px] ml-10 bg-green-200 overflow-y-scroll h-[300px] flex flex-col-reverse"
       >
         <div>
@@ -34,16 +32,18 @@ const LiveChat = () => {
             <ChatMessage name={data.name} message={data.message} />
           ))}
         </div>
-      </d>
+      </div>
       <form
         className="w-full p-2 ml-2 border border-black"
         onSubmit={(e) => {
-            e.preventDefault();
-          console.log("On form submit", liveMessage);
-          dispatch(addMessage({
-            name:"sameer",
-            message:liveMessage
-          }))
+          e.preventDefault();
+          // console.log("On form submit", liveMessage);
+          dispatch(
+            addMessage({
+              name: "sameer",
+              message: liveMessage,
+            })
+          );
           setLiveMessage("");
         }}
       >

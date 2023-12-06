@@ -1,12 +1,28 @@
-import React from 'react'
+import React from "react";
+import { homePageButtonNameList } from "../utils/helper";
+import { Link } from "react-router-dom";
 
-const ButtonList = ({name}) => {
-  const catList=["All","programming","computer","suhail","arbaz","sameer"];
+const ButtonList = () => {
   return (
-    <div>
-      <button className='px-5 py-3 p-2 bg-gray-400 rounded-lg' >{name}</button>
+    <div className="flex m-2 overflow-hidden">
+      <Link to={`/`}>
+            <div>
+          <button className="mx-2 px-4 py-1 whitespace-nowrap  bg-gray-200 rounded-lg hover:bg-gray-300">
+            All
+          </button>
+        </div>
+          </Link>
+      {homePageButtonNameList.map((item) => (
+        <Link to={`/result/?search_query=${item}`}>
+            <div>
+          <button className="mx-2 px-4 py-1 whitespace-nowrap  bg-gray-200 rounded-lg hover:bg-gray-300">
+            {item}
+          </button>
+        </div>
+          </Link>
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default ButtonList
+export default ButtonList;

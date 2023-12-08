@@ -100,11 +100,20 @@ const Header = () => {
               <ul>
                 {suggestions.map((s) => (
                   <li
-                    key={s}
-                    className="flex gap-2 py-[2px] items-center hover:bg-green-100 cursor-pointer"
-                  >
-                    <FaSearch /> {s}
-                  </li>
+                  key={s}
+                  className="py-2 px-2 hover:bg-gray-100 font-semibold"
+                  onMouseDown={(e) => {
+                    e.preventDefault(); // Prevent default behavior
+                    setSearchQuery(s); // Set the search query
+                  }}
+
+                  //onClick will not work here
+                  /*  */
+                >
+                  <div className="flex items-center">
+                    <FaSearch className="mr-3 text-lg" /> {s}
+                  </div>
+                </li>
                 ))}
               </ul>
             </div>

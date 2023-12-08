@@ -66,7 +66,7 @@ const CommentsContainer = () => {
   const getcomment = async () => {
     const data = await fetch(COMMENTS_API+api_key+ "&videoId="+VideoId);
     const json = await data.json();
-    console.log(json.items);
+    // console.log(json.items);
     setCommentsApi(json.items);
   };
 

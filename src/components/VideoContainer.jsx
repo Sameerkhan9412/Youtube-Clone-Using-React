@@ -15,8 +15,8 @@ const VideoContainer = () => {
     setVideo(json.items);
   }
   return (
-    <div className='flex flex-wrap'>
-      {videos[0] && <AdvstVideoCard info={videos[0]}/>}
+    <div className='h-[calc(100vh-7.8rem)]  overflow-y-scroll custom-scrollbar1 grid  grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5' >
+      {videos[0] && <AdvstVideoCard info={videos[9]}/>}
       {
         videos.map((video)=>(
           <Link to={`/watch?v=${video.id}`}  key={video.id}> <VideoCard key={video.id} info={video}/></Link>

@@ -4,17 +4,20 @@ import Body from "./components/Body";
 import Header from "./components/Header";
 import { Provider } from "react-redux";
 import store from "./utils/store";
-import {createBrowserRouter } from "react-router-dom";
+import {Outlet, createBrowserRouter } from "react-router-dom";
 import MainContainer from "./components/MainContainer";
 import WatchPage from "./components/WatchPage";
 import SearchShimmer from "./components/SearchShimmer";
 import SearchResult from "./components/SearchResults";
+import Sidebar from "./components/Sidebar";
 function App() {
   return (
     <Provider store={store}>
-    <div>
-     <Header/>
-     <Body/>
+    {/* <div className="grid grid-cols-6 h-[100vh] overflow-hidden"> */}
+    <div className="grid grid-cols-6 overflow-hidden">
+      <div className="col-span-6"><Header/></div>
+      <Sidebar/>
+      <Outlet/>
     </div>
     </Provider>
   );

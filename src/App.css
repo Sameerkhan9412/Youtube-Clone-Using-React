@@ -16,3 +16,16 @@
 .sidebarList:hover{
     background: rgba(128, 128, 128, 0.259);
 }
+.custom-scrollbar1{
+    scrollbar-width: 0;
+}
+.custom-scrollbar1::-webkit-scrollbar{
+    width: 5px;
+}
+.custom-scrollbar2::-webkit-scrollbar{
+    width: 0;
+}
+.custom-scrollbar1::-webkit-scrollbar-thumb{
+    background: gray;
+    border-radius: 5px;
+}

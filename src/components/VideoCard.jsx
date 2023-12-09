@@ -1,13 +1,14 @@
 import React from 'react'
+import { LuExternalLink } from "react-icons/lu";
 
 const VideoCard = ({info}) => {
     const {snippet,statistics}=info;
     const {channelTitle,title,thumbnails}=snippet;
   return (
-    <div className='p-2 m-2 w-72 shadow-lg'>
-        <img src={thumbnails.medium.url} alt="thumbnail" className='rounded-lg' />
-        <ul>
-            <li className='font-bold py-2'>{title}</li>
+    <div className=' shadow-lg rounded-lg'>
+        <img src={thumbnails.medium.url} alt="thumbnail" className='rounded-lg w-full object-cover aspect-video'  />
+        <ul className='px-2'>
+            <li className='font-bold py-1'>{title}</li>
             <li>{channelTitle}</li>
             <li>{statistics.viewCount} views</li>
         </ul>
@@ -18,12 +19,13 @@ export const AdvstVideoCard = ({info}) => {
     const {snippet,statistics}=info;
     const {channelTitle,title,thumbnails}=snippet;
   return (
-    <div className='p-2 m-2 w-72 shadow-lg border-2 border-black'>
+    <div className='shadow-lg rounded-lg'>
         <img src={thumbnails.medium.url} alt="thumbnail" className='rounded-lg' />
         <ul>
-            <li className='font-bold py-2'>{title}</li>
-            <li>{channelTitle}</li>
-            <li>{statistics.viewCount} views</li>
+          <li className='font-bold'>Advertisement</li>
+          <li>{title}</li>
+            <li className='py-2'><span className='font-bold'>Sponsored</span> . {channelTitle}</li>
+            <li className='py-2 text-center rounded-md flex justify-center bg-[#DEF1FF] text-[rgb(33,113,217)] font-bold'><button className='flex items-center '><span>Apply Now</span><LuExternalLink/></button></li>
         </ul>
     </div>
   )

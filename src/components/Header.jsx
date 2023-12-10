@@ -124,9 +124,9 @@ const Header = () => {
         <button className="ml-2 border-2 text-2xl h-10 aspect-square rounded-[50%] bg-gray-400 "><MdOutlineKeyboardVoice className="translate-x-[25%]" /></button>
         </div>
       <div className="col-span-1 flex justify-end items-center gap-2 pr-2 text-2xl">
-        <GoDeviceCameraVideo/>
-        <IoIosNotificationsOutline/>
-        <FaUserCircle className="" />
+        <GoDeviceCameraVideo className="text-xl"/>
+        <IoIosNotificationsOutline className="text-xl"/>
+        <FaUserCircle  />
       </div>
     </div>
   );

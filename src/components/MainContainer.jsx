@@ -7,8 +7,8 @@ const MainContainer = () => {
 
   return (
     // <div className="col-span-7 p-2 max-w-[100vw] overflow-hidden">
-    <div className={` ${!isMenuOpen?"col-span-7":"col-span-5"} p-2 max-w-[100vw] overflow-hidden`}>
-      <ButtonList className=""/>
+    <div className={`${!isMenuOpen?"col-span-7":"col-span-5"} p-2 max-w-[100vw] overflow-hidden`}>
+      <ButtonList/>
       <VideoContainer />
     </div>
   );

@@ -7,12 +7,36 @@ import SearchShimmer from "./SearchShimmer";
 import { YOUTUBE_VIDEO_SEARCH_RESULT_API } from "../utils/constants";
 import SearchResultsCard from "./SearchResultsCard";
 import ButtonList from "./ButtonList";
+import { useSelector } from "react-redux";
 // import SearchResultsCard from "./SearchResultCard";
+
+
+// <div className={`${!isMenuOpen?"col-span-7 ":"col-span-5" } px-24 h-[calc(100vh-4rem)] overflow-hidden border-2 border-black`}>
+// {" "}
+// <div className="mx-space-y-2 mb-2 md:h-14 md:m-2 md:my-3 flex-col md:flex-row flex cursor-pointer p-1 rounded-lg">
+//   <ButtonList />
+// </div>
+// {/* Conditional rendering */}
+// {searchResult.length === 0 ? (
+//   <SearchShimmer /> // Render the shimmer component when searchResult is empty
+// ) : (
+//   searchResult.map((r) => (
+//     <Link to={"/watch?v=" + r.id.videoId} key={r.id.videoId}>
+//       <SearchResultsCard info={r} />
+//     </Link>
+//   // <div key={r.id.videoId}>
+//   //     <SearchResultsCard info={r} />
+//   // </div>
+//   )
+//   )
+// )}
+// </div>
 
 const SearchResult = () => {
   const [searchParams] = useSearchParams();
   const searchTerm = searchParams.get("search_query");
   const api_key=process.env.REACT_APP_YOUTUBE_KEY;
+  const isMenuOpen=useSelector(store=>store.app.isMenuOpen);
 
   useEffect(() => {
     getResults();
@@ -28,25 +52,20 @@ const SearchResult = () => {
   };
 
   return (
-    <div className="mx-48">
-      {" "}
-      <div className="mx-space-y-2 mb-2 md:h-14 md:m-2 md:my-3 flex-col md:flex-row flex cursor-pointer p-1 rounded-lg">
-        <ButtonList />
-      </div>
-      {/* Conditional rendering */}
+    <div className={`${!isMenuOpen?"col-span-7":"col-span-5"} p-2 max-w-[100vw] overflow-hidden`}>
+      <ButtonList/>
+      <div className='h-[calc(100vh-7.8rem)]  overflow-y-scroll custom-scrollbar1 grid  grid-cols-1 px-24' >
       {searchResult.length === 0 ? (
         <SearchShimmer /> // Render the shimmer component when searchResult is empty
-      ) : (
+        ) : (
         searchResult.map((r) => (
           <Link to={"/watch?v=" + r.id.videoId} key={r.id.videoId}>
             <SearchResultsCard info={r} />
           </Link>
-        // <div key={r.id.videoId}>
-        //     <SearchResultsCard info={r} />
-        // </div>
         )
         )
-      )}
+        )}
+      </div>      
     </div>
   );
 };

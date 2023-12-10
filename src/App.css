@@ -29,3 +29,18 @@
     background: gray;
     border-radius: 5px;
 }
+
+.shimmer-animation{
+    animation:shimmer 2s infinite;
+}
+@keyframes shimmer {
+    0%{
+        background: gray;
+    }
+    50%{
+        background: rgba(128, 128, 128, 0.653);
+    }
+    75%{
+        background: rgba(128, 128, 128, 0.275);
+    }
+}

@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { MdKeyboardVoice, MdOutlineKeyboardVoice } from "react-icons/md";
 import { GoDeviceCameraVideo } from "react-icons/go";
 import { IoIosNotificationsOutline } from "react-icons/io";
+import VoiceSearchModal from "./VoiceSearchModal";
 
 // {showSuggestions && (
 //   <div className="fixed mt-9 bg-white px-5 py-2 w-1/3 shadow-lg rounded-lg">
@@ -40,6 +41,7 @@ const Header = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const searchCache = useSelector((store) => store.search);
+  const [voiceSearchModel,setVoiceSearchModal]=useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -75,10 +77,22 @@ const Header = () => {
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
   };
-  const getVideoBySearch = () => {};
   const searchVideo = () => {
     console.log("this is search query", searchQuery);
   };
+
+  const VoiceSearch=()=>{
+    console.log(voiceSearchModel);
+    if(voiceSearchModel){
+      setVoiceSearchModal(false);
+    }
+    else{
+      setVoiceSearchModal(true);
+    }
+    console.log(voiceSearchModel);
+  }
+
+
   return (
     <div className="grid grid-flow-col h-16 p-2 shadow-lg items-center">
       <div className="flex col-span-1 gap-2 items-center  ">
@@ -121,13 +135,16 @@ const Header = () => {
             </button>
           </Link>
         </form>
-        <button className="ml-2 border-2 text-2xl h-10 aspect-square rounded-[50%] bg-gray-400 "><MdOutlineKeyboardVoice className="translate-x-[25%]" /></button>
+        <button className="ml-2 border-2 text-2xl h-10 aspect-square rounded-[50%] bg-gray-400  " onClick={VoiceSearch}><MdOutlineKeyboardVoice className="translate-x-[25%]" /></button>
         </div>
       <div className="col-span-1 flex justify-end items-center gap-2 pr-2 text-2xl">
         <GoDeviceCameraVideo className="text-xl"/>
         <IoIosNotificationsOutline className="text-xl"/>
         <FaUserCircle  />
       </div>
+      {
+        voiceSearchModel && <VoiceSearchModal/>
+      }
     </div>
   );
 };

@@ -41,7 +41,7 @@ const VideoInfo = () => {
   };
 
   return (
-    <div className="flex flex-wrap">
+    <div className="flex flex-wrap w-full">
       <VideoDescription info={videos} channelInfo={channel} />
     </div>
   );

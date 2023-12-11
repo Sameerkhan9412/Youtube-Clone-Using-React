@@ -1,24 +1,5 @@
-/*import React from "react";
-
-const VideoDescription = ({ info }) => {
-  const { snippet, statistics } = info;
-  const { channelTitle, title, publishedAt } = snippet;
-  const { viewCount } = statistics;
-
-  return (
-  <div>
-    <li className="font-bold">{title}</li>
-    <li>{channelTitle}</li>
-    <li>{publishedAt}</li>
-    <li>{viewCount}</li>
-  </div>
-  );
-};
-
-export default VideoDescription; */
 
 import React, { useState } from "react";
-// import { calculateTimeAgo, formatNumber } from "../Utils/constants";
 import { calculateTimeAgo,formatNumber } from "../utils/constants";
 import {
   HiThumbDown,
@@ -57,18 +38,17 @@ export const VideoDescription = ({ info, channelInfo }) => {
 
   //optional chaining is very important
   return (
-    <div className="m-2">
-      <div className="m-2">
+    <div className="">
+      <div className="">
         <p className="font-extrabold text-xl">{title}</p>
-        <div className="flex items-center mb-3 mt-1">
-          <div>
+        <div className="flex items-center  mb-3 mt-1 justify-between">
+          <div className="w-1/2 flex items-center p-2 justify-evenly">
             <img
               className="rounded-full h-12"
               src={thumbnails?.high?.url}
               alt="Avtaar"
             />
-          </div>
-          <div className="ml-2">
+          <div className="ml-1">
             <p className="font-bold">{channelTitle}</p>
             <p className="text-gray-500 text-sm">
               {formatNumber(subscriberCount) + " subscribers"}
@@ -76,76 +56,74 @@ export const VideoDescription = ({ info, channelInfo }) => {
           </div>
           <div>
             {issubscribe ? (
-              <div className="bg-black text-white flex font-semibold rounded-full ml-8 px-[0.87rem] py-[0.40rem] items-center ">
+              <div className="bg-black text-white flex font-semibold rounded-full items-center px-4 ml-2 ">
                 <BiSolidBellRing className="text-xl mt-0" />
-                <button className="ml-1" onClick={() => setIsSubscribe(false)}>
+                <button className="ml-1 py-1 " onClick={() => setIsSubscribe(false)}>
                   Subscribed
                 </button>
               </div>
             ) : (
               <button
-                className="bg-black text-white font-semibold w-32 rounded-full ml-8 px-[0.87rem] py-[0.40rem]"
+                className="bg-black text-white font-semibold w-32 py-1 rounded-full ml-2"
                 onClick={() => setIsSubscribe(true)}
               >
                 Subscribe
               </button>
             )}
           </div>
-
-          <div className="flex ml-28">
-            <div className="bg-black text-white flex font-normal rounded-full ml-8 px-[0.87rem] py-[0.40rem] items-center">
-              {isLike ? (
-                <button
-                  onClick={() => {
-                    setIsLike(false);
-                    //setIsDisLike(true);
-                  }}
-                  className="text-2xl ml-2"
-                >
-                  <HiThumbUp />
-                </button>
-              ) : (
-                <button
-                  onClick={() => {
-                    setIsLike(true);
-                    setIsDisLike(false);
-                  }}
-                  className="ml-2 text-2xl"
-                >
-                  <HiOutlineThumbUp />
-                </button>
-              )}
-              <p className="text-sm font-semibold ml-1">
-                {formatNumber(likeCount)}
-              </p>
-              {isDisLike ? (
-                <button
-                  className="text-2xl ml-3"
-                  onClick={() => {
-                    setIsDisLike(false);
-                    //setIsLike(true);
-                  }}
-                >
-                  <HiThumbDown />
-                </button>
-              ) : (
-                <button
-                  className="text-2xl ml-3"
-                  onClick={() => {
-                    setIsDisLike(true);
-                    setIsLike(false);
-                  }}
-                >
-                  <HiOutlineThumbDown />
-                </button>
-              )}
-            </div>
-            <div className="bg-black text-white flex font-normal rounded-full ml-8 px-[0.87rem] py-[0.40rem]">
-              <p className="text-2xl">
-                <PiShareFat />
-              </p>
-              <button className="font-semibold ml-2">Share</button>
-            </div>
+          </div>
+          <div className="bg-black text-white flex font-normal rounded-full items-center py-1 px-3">
+            {isLike ? (
+              <button
+                onClick={() => {
+                  setIsLike(false);
+                  //setIsDisLike(true);
+                }}
+                className="text-2xl ml-2"
+              >
+                <HiThumbUp />
+              </button>
+            ) : (
+              <button
+                onClick={() => {
+                  setIsLike(true);
+                  setIsDisLike(false);
+                }}
+                className="ml-2 text-2xl"
+              >
+                <HiOutlineThumbUp />
+              </button>
+            )}
+            <p className="text-sm font-semibold ml-1">
+              {formatNumber(likeCount)}
+            </p>
+            {isDisLike ? (
+              <button
+                className="text-2xl ml-3"
+                onClick={() => {
+                  setIsDisLike(false);
+                  //setIsLike(true);
+                }}
+              >
+                <HiThumbDown />
+              </button>
+            ) : (
+              <button
+                className="text-2xl ml-3"
+                onClick={() => {
+                  setIsDisLike(true);
+                  setIsLike(false);
+                }}
+              >
+                <HiOutlineThumbDown />
+              </button>
+            )}
+          </div>
+          <div className="bg-black text-white flex font-normal rounded-full py-1 px-2 ">
+            <p className="text-2xl">
+              <PiShareFat />
+            </p>
+            <button className="font-semibold ml-2">Share</button>
           </div>
         </div>
       </div>

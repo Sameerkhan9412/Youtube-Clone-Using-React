@@ -3,6 +3,8 @@ import ChatMessage from "./ChatMessage";
 import { useDispatch, useSelector } from "react-redux";
 import { addMessage } from "../Slices/chatSlice";
 import { generateRandomMsg, randomNameGenerater } from "../utils/helper";
+import { FaAngleDown } from "react-icons/fa6";
+import { IoSend } from "react-icons/io5";
 
 const LiveChat = () => {
   const [liveMessage, setLiveMessage] = useState("");
@@ -24,17 +26,18 @@ const LiveChat = () => {
   });
   return (
     <>
+      <h1 className="border-2 p-2 rounded-lg flex items-center gap-2">Live Chat <FaAngleDown /></h1>
       <div
-        className="border-2 border-black w-[500px] ml-10 bg-green-200 overflow-y-scroll h-[300px] flex flex-col-reverse"
+        className=" overflow-y-scroll h-[300px]  "
       >
-        <div>
+        <div className="flex flex-col p-2">
           {chatMessagesList.map((data) => (
             <ChatMessage name={data.name} message={data.message} />
           ))}
         </div>
       </div>
       <form
-        className="w-full p-2 ml-2 border border-black"
+        className="w-full flex items-center gap-2 p-1 rounded-lg border-2 border-gray-400"
         onSubmit={(e) => {
           e.preventDefault();
           // console.log("On form submit", liveMessage);
@@ -48,14 +51,14 @@ const LiveChat = () => {
         }}
       >
         <input
-          className="w-[90%] p-2"
+          className="w-[90%] p-1"
           type="text"
           name=""
           id=""
           value={liveMessage}
           onChange={(e) => setLiveMessage(e.target.value)}
         />
-        <button className="border border-black">send</button>
+        <button className="text-2xl"><IoSend/></button>
       </form>
     </>
   );

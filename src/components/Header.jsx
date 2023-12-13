@@ -62,6 +62,7 @@ const Header = () => {
   }, [searchQuery]);
 
   const getSearchSuggestions = async () => {
+    try{
     const data = await fetch(YOUTUBE_SEARCH_SUGGESTION_API + searchQuery);
     const json = await data.json();
     setSuggestions(json[1]);
@@ -72,6 +73,10 @@ const Header = () => {
         [searchQuery]: json[1],
       })
     );
+    }
+    catch(e){
+      console.log(e);
+    }
   };
 
   const toggleMenuHandler = () => {
@@ -101,9 +106,9 @@ const Header = () => {
           onClick={toggleMenuHandler}
         />
         <Link to={"/"}><img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR79YAV4WMPw0y1dW3op6Py1Yda92DnwHbjNYegDjZ1vQoVywt4OTUg_JA-ohD-rw4u5g&usqp=CAU"
+          src="https://res.cloudinary.com/sameerkhan/image/upload/v1702373189/samTube_Logo_g49ood.png"
           alt="Sam Youtube logo"
-          className="h-8"
+          className="h-9 border-2 border-black"
         />
         </Link>
       </div>
@@ -135,7 +140,7 @@ const Header = () => {
             </button>
           </Link>
         </form>
-        <button className="ml-2 border-2 text-2xl h-10 aspect-square rounded-[50%] bg-gray-400  " onClick={VoiceSearch}><MdOutlineKeyboardVoice className="translate-x-[25%]" /></button>
+        <button className="ml-2 border-2 text-2xl h-10 aspect-square rounded-[50%] bg-gray-400  hover:bg-red-400 transition-all duration-200 hover:text-white " title="Voice search" onClick={VoiceSearch}><MdOutlineKeyboardVoice className="translate-x-[25%]" /></button>
         </div>
       <div className="col-span-1 flex justify-end items-center gap-2 pr-2 text-2xl">
         <GoDeviceCameraVideo className="text-xl"/>
@@ -143,7 +148,7 @@ const Header = () => {
         <FaUserCircle  />
       </div>
       {
-        voiceSearchModel && <VoiceSearchModal/>
+        voiceSearchModel && <VoiceSearchModal data={{searchQuery,setSearchQuery,setVoiceSearchModal}}/>
       }
     </div>
   );

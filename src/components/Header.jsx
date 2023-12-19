@@ -82,12 +82,8 @@ const Header = () => {
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
   };
-  const searchVideo = () => {
-    console.log("this is search query", searchQuery);
-  };
 
   const VoiceSearch=()=>{
-    console.log(voiceSearchModel);
     if(voiceSearchModel){
       setVoiceSearchModal(false);
     }
@@ -117,7 +113,6 @@ const Header = () => {
           className="w-[90%] pl-4 border-[1px] border-gray-400 flex items-center rounded-md "
           onSubmit={(e) => {
             e.preventDefault();
-            searchVideo();
           }}
         >
           <input

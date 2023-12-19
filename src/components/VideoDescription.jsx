@@ -7,10 +7,11 @@ import {
   HiOutlineThumbDown,
   HiOutlineThumbUp,
 } from "react-icons/hi";
-import { PiShareFat } from "react-icons/pi";
 import { BiSolidBellRing } from "react-icons/bi";
+import { MdFileDownload } from "react-icons/md";
+import { downloadVideoFunc } from "../services/donwloadVideo";
 
-export const VideoDescription = ({ info, channelInfo }) => {
+export const VideoDescription = ({ info, channelInfo,videoId }) => {
   const [showDescription, setShowDescription] = useState(false);
   const {
     snippet: { channelTitle, title, description, publishedAt } = {},
@@ -22,20 +23,21 @@ export const VideoDescription = ({ info, channelInfo }) => {
   is used as a fallback. This prevents potential "Cannot read property '...' 
   of null" or "Cannot read property '...' of undefined" errors when 
   destructuring the object.*/
-
-  console.log(info);
-
   const [issubscribe, setIsSubscribe] = useState(false);
   const [isLike, setIsLike] = useState(false);
   const [isDisLike, setIsDisLike] = useState(false);
+  const [vidQuality,setVidQuality]=useState("18");
 
   const truncatedDescription = showDescription
-    ? description
+  ? description
     : `${description?.substring(0, 200)}...`;
 
   const { snippet: { thumbnails } = {}, statistics: { subscriberCount } = {} } =
     channelInfo ?? {};
 
+    const videoDownload=(videoId,quality)=>{
+      downloadVideoFunc(videoId,quality);
+    }
   //optional chaining is very important
   return (
     <div className="">
@@ -77,7 +79,6 @@ export const VideoDescription = ({ info, channelInfo }) => {
               <button
                 onClick={() => {
                   setIsLike(false);
-                  //setIsDisLike(true);
                 }}
                 className="text-2xl ml-2"
               >
@@ -102,7 +103,6 @@ export const VideoDescription = ({ info, channelInfo }) => {
                 className="text-2xl ml-3"
                 onClick={() => {
                   setIsDisLike(false);
-                  //setIsLike(true);
                 }}
               >
                 <HiThumbDown />
@@ -120,10 +120,17 @@ export const VideoDescription = ({ info, channelInfo }) => {
             )}
           </div>
           <div className="bg-black text-white flex font-normal rounded-full py-1 px-2 ">
+            <select  value={vidQuality} onChange={(e)=>setVidQuality(e.target.value)}  className="bg-black outline-none mx-1 border-r-2 border-white">
+              <option value="137">1080p</option>
+              <option value="136">720p</option>
+              <option value="135">480p</option>
+              <option value="18">360</option>
+              <option value="140">mp3</option>
+            </select>
             <p className="text-2xl">
-              <PiShareFat />
+              <MdFileDownload />
             </p>
-            <button className="font-semibold ml-2">Share</button>
+            <button className="font-semibold ml-2" onClick={()=>videoDownload(videoId,vidQuality)}>Download</button>
           </div>
         </div>
       </div>

@@ -18,7 +18,6 @@ const VideoInfo = () => {
   const getVideos = async () => {
     const data = await fetch(VIDEO_API +api_key+"&id="+ desiredId);
     const json = await data.json();
-    console.log(json.items);
     setVideos(json.items[0]);
 
     // Extract channelId from videos and pass it to getChannel
@@ -33,16 +32,13 @@ const VideoInfo = () => {
       `https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=${channelId}&key=${api_key}`
     );
     const json = await data.json();
-
     const channelInfo = json?.items?.[0] ?? null;
-
-    console.log(channelInfo);
     setChannel(channelInfo);
   };
 
   return (
     <div className="flex flex-wrap w-full">
-      <VideoDescription info={videos} channelInfo={channel} />
+      <VideoDescription info={videos} channelInfo={channel} videoId={desiredId} />
     </div>
   );
 };

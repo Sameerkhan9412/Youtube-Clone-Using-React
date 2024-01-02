@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { FaUserCircle, FaSearch } from "react-icons/fa";
+import { FaUserCircle, FaSearch, FaYoutube } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../Slices/appSlice";
@@ -12,29 +12,6 @@ import { GoDeviceCameraVideo } from "react-icons/go";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import VoiceSearchModal from "./VoiceSearchModal";
 
-// {showSuggestions && (
-//   <div className="fixed mt-9 bg-white px-5 py-2 w-1/3 shadow-lg rounded-lg">
-//     <ul>
-//       {suggestions.map((s) => (
-//         <li
-//         key={s}
-//         className="py-2 px-2 hover:bg-gray-100 font-semibold"
-//         onMouseDown={(e) => {
-//           e.preventDefault(); // Prevent default behavior
-//           setSearchQuery(s); // Set the search query
-//         }}
-
-//         //onClick will not work here
-//         /*  */
-//       >
-//         <div className="flex items-center">
-//           <FaSearch className="mr-3 text-lg" /> {s}
-//         </div>
-//       </li>
-//       ))}
-//     </ul>
-//   </div>
-// )}
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -43,7 +20,7 @@ const Header = () => {
   const searchCache = useSelector((store) => store.search);
   const [voiceSearchModel,setVoiceSearchModal]=useState(false);
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     // API CALLS
     // make an api call after every key press
@@ -72,17 +49,17 @@ const Header = () => {
       cacheResults({
         [searchQuery]: json[1],
       })
-    );
+      );
     }
     catch(e){
       console.log(e);
     }
   };
-
+  
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
   };
-
+  
   const VoiceSearch=()=>{
     if(voiceSearchModel){
       setVoiceSearchModal(false);
@@ -92,29 +69,28 @@ const Header = () => {
     }
     console.log(voiceSearchModel);
   }
-
-
+  
+  
   return (
     <div className="grid grid-flow-col h-16 p-2 shadow-lg items-center">
       <div className="flex col-span-1 gap-2 items-center  ">
         <GiHamburgerMenu
           className="text-2xl text-gray-400 cursor-pointer"
           onClick={toggleMenuHandler}
-        />
-        <Link to={"/"}><img
-          src="https://res.cloudinary.com/sameerkhan/image/upload/v1702373189/samTube_Logo_g49ood.png"
-          alt="Sam Youtube logo"
-          className="h-9 border-2 border-black"
-        />
+          />
+        <Link to={"/"} className="flex gap-1 items-center font-semibold">
+        <FaYoutube className="text-red-500 text-3xl"/>
+        <span>SamTube</span>
         </Link>
       </div>
-      <div className="flex w-[100%] ">
+      <div className="flex w-[100%]">
+        <div className="w-[100%] relative">
         <form
-          className="w-[90%] pl-4 border-[1px] border-gray-400 flex items-center rounded-md "
+          className="w-[100%] pl-4 border-[1px] border-gray-400 flex items-center rounded-md "
           onSubmit={(e) => {
             e.preventDefault();
           }}
-        >
+          >
           <input
             type="text"
             name=""
@@ -125,16 +101,40 @@ const Header = () => {
             onBlur={() => setShowSuggestions(false)}
             className="w-[90%] h-9 outline-none border-r-2 border-r-gray-400"
             placeholder="search "
-          />
+            />
           <Link to={"/result/?search_query=" + searchQuery} className="flex items-center w-[10%] bg-gray-400 h-9 overflow-hidden">
             <button
               className=" translate-x-2"
               title="search"
-            >
+              >
               <CiSearch className="text-2xl" />
             </button>
           </Link>
         </form>
+        {showSuggestions && (
+                  <div className="absolute z-10 bg-gray-50 border-1 w-full">
+                    <ul>
+                      {suggestions.map((s) => (
+                        <li
+                        key={s}
+                        className="py-2 px-2 hover:bg-gray-100 font-semibold cursor-pointer"
+                        onMouseDown={(e) => {
+                          e.preventDefault(); // Prevent default behavior
+                          setSearchQuery(s); // Set the search query
+                        }}
+                
+                        //onClick will not work here
+                        /*  */
+                      >
+                        <div className="flex items-center">
+                          <FaSearch className="mr-3 text-lg" /> {s}
+                        </div>
+                      </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+        </div>
         <button className="ml-2 border-2 text-2xl h-10 aspect-square rounded-[50%] bg-gray-400  hover:bg-red-400 transition-all duration-200 hover:text-white " title="Voice search" onClick={VoiceSearch}><MdOutlineKeyboardVoice className="translate-x-[25%]" /></button>
         </div>
       <div className="col-span-1 flex justify-end items-center gap-2 pr-2 text-2xl">

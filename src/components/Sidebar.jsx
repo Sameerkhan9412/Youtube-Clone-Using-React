@@ -16,7 +16,7 @@ const Sidebar = () => {
   if(!isMenuOpen) return null;
   
   return (
-    <div className='p-2 shadow-lg col-span-1 border-2 h-[calc(100vh-4rem)] overflow-y-scroll custom-scrollbar1'>
+    <div className='p-2 shadow-lg col-span-1 h-[calc(100vh-4rem)] overflow-y-scroll custom-scrollbar1'>
       <ul className='text-sm'>
         <li className='sidebarList'><GoHome className='mr-3 text-2xl'/> Home</li>
         <li className='sidebarList '><SiYoutubeshorts className='mr-3 text-2xl'/> Shorts</li>
@@ -41,7 +41,6 @@ const Sidebar = () => {
         <li className='sidebarList'><HiOutlineNewspaper  className='mr-3 text-2xl '/> News</li>
         <li className='sidebarList'><HiOutlineTrophy  className='mr-3 text-2xl '/> Sports</li>
         <li className='sidebarList'><HiOutlineLightBulb  className='mr-3 text-2xl '/> Learing</li>
-        <li className='flex py-2 gap-2 rounded-md transition-all hover:bg-gray-200'><PiCoatHanger  className='mr-3 text-2xl '/> Fashion & Beauty</li>
         <li className='sidebarList'><MdOutlinePodcasts  className='mr-3 text-2xl '/> Podcasts</li>
       </ul>
       <hr className='my-2' />

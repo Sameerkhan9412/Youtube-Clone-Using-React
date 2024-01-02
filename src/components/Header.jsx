@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { FaUserCircle, FaSearch, FaYoutube } from "react-icons/fa";
+import { FaUserCircle, FaSearch, FaYoutube, FaMoon } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../Slices/appSlice";
@@ -11,6 +11,7 @@ import { MdKeyboardVoice, MdOutlineKeyboardVoice } from "react-icons/md";
 import { GoDeviceCameraVideo } from "react-icons/go";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import VoiceSearchModal from "./VoiceSearchModal";
+import Theme from "./Theme";
 
 
 const Header = () => {
@@ -19,6 +20,7 @@ const Header = () => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const searchCache = useSelector((store) => store.search);
   const [voiceSearchModel,setVoiceSearchModal]=useState(false);
+  const isDark = useSelector((store) => store.theme.isDark);
   const dispatch = useDispatch();
   
   useEffect(() => {
@@ -72,13 +74,13 @@ const Header = () => {
   
   
   return (
-    <div className="grid grid-flow-col h-16 p-2 shadow-lg items-center">
+    <div className={`grid grid-flow-col h-16 p-2 shadow-lg items-center}`}>
       <div className="flex col-span-1 gap-2 items-center  ">
         <GiHamburgerMenu
           className="text-2xl text-gray-400 cursor-pointer"
           onClick={toggleMenuHandler}
           />
-        <Link to={"/"} className="flex gap-1 items-center font-semibold">
+        <Link to={"/"} className="flex gap-1 text-lg items-center font-semibold">
         <FaYoutube className="text-red-500 text-3xl"/>
         <span>SamTube</span>
         </Link>
@@ -99,10 +101,10 @@ const Header = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
             onFocus={() => setShowSuggestions(true)}
             onBlur={() => setShowSuggestions(false)}
-            className="w-[90%] h-9 outline-none border-r-2 border-r-gray-400"
+            className="w-[90%] h-9 outline-none border-r-2 border-r-gray-400 bg-transparent"
             placeholder="search "
             />
-          <Link to={"/result/?search_query=" + searchQuery} className="flex items-center w-[10%] bg-gray-400 h-9 overflow-hidden">
+          <Link to={"/result/?search_query=" + searchQuery} className="flex items-center w-[10%] h-9 overflow-hidden">
             <button
               className=" translate-x-2"
               title="search"
@@ -112,12 +114,12 @@ const Header = () => {
           </Link>
         </form>
         {showSuggestions && (
-                  <div className="absolute z-10 bg-gray-50 border-1 w-full">
+                  <div className="absolute z-10  border-1 w-full" style={{background:isDark?"var(--dark-theme-bgcolor)":"var(--light-theme-bgcolor)"}}>
                     <ul>
                       {suggestions.map((s) => (
                         <li
                         key={s}
-                        className="py-2 px-2 hover:bg-gray-100 font-semibold cursor-pointer"
+                        className="py-2 px-2 hover:bg-gray-500 font-semibold cursor-pointer"
                         onMouseDown={(e) => {
                           e.preventDefault(); // Prevent default behavior
                           setSearchQuery(s); // Set the search query
@@ -135,9 +137,10 @@ const Header = () => {
                   </div>
                 )}
         </div>
-        <button className="ml-2 border-2 text-2xl h-10 aspect-square rounded-[50%] bg-gray-400  hover:bg-red-400 transition-all duration-200 hover:text-white " title="Voice search" onClick={VoiceSearch}><MdOutlineKeyboardVoice className="translate-x-[25%]" /></button>
+        <button className="ml-2 border-2 text-2xl h-10 aspect-square rounded-[50%] hover:bg-red-400 transition-all duration-200 hover:text-white " title="Voice search" onClick={VoiceSearch}><MdOutlineKeyboardVoice className="translate-x-[25%]" /></button>
         </div>
       <div className="col-span-1 flex justify-end items-center gap-2 pr-2 text-2xl">
+        <Theme/>
         <GoDeviceCameraVideo className="text-xl"/>
         <IoIosNotificationsOutline className="text-xl"/>
         <FaUserCircle  />

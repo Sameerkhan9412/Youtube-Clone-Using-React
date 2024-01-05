@@ -16,7 +16,7 @@ const Sidebar = () => {
   if(!isMenuOpen) return null;
   
   return (
-    <div className='p-2 shadow-lg col-span-1 h-[calc(100vh-4rem)] overflow-y-scroll custom-scrollbar1'>
+    <div className='p-2 shadow-lg col-span-1 h-[calc(100vh-4rem)] overflow-y-scroll custom-scrollbar1 mt-16'>
       <ul className='text-sm'>
         <li className='sidebarList'><GoHome className='mr-3 text-2xl'/> Home</li>
         <li className='sidebarList '><SiYoutubeshorts className='mr-3 text-2xl'/> Shorts</li>

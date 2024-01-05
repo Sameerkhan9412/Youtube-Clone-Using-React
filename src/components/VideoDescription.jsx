@@ -1,5 +1,6 @@
 
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { calculateTimeAgo,formatNumber } from "../utils/constants";
 import {
   HiThumbDown,
@@ -27,6 +28,8 @@ export const VideoDescription = ({ info, channelInfo,videoId }) => {
   const [isLike, setIsLike] = useState(false);
   const [isDisLike, setIsDisLike] = useState(false);
   const [vidQuality,setVidQuality]=useState("18");
+  const isDark=useSelector(store=>store.theme.isDark);
+  
 
   const truncatedDescription = showDescription
   ? description
@@ -44,7 +47,7 @@ export const VideoDescription = ({ info, channelInfo,videoId }) => {
       <div className="">
         <p className="font-extrabold text-xl">{title}</p>
         <div className="flex items-center  mb-3 mt-1 justify-between">
-          <div className="w-1/2 flex items-center p-2 justify-evenly">
+          <div className="w-1/2 flex items-center p-2 justify-evenly" >
             <img
               className="rounded-full h-12"
               src={thumbnails?.high?.url}
@@ -58,7 +61,7 @@ export const VideoDescription = ({ info, channelInfo,videoId }) => {
           </div>
           <div>
             {issubscribe ? (
-              <div className="bg-black text-white flex font-semibold rounded-full items-center px-4 ml-2 ">
+              <div className="flex font-semibold rounded-full items-center px-4 ml-2 " style={{background:isDark?"var(--light-theme-bgcolor)":"var(--dark-theme-bgcolor)",color:isDark?"var(--light-theme-text)":"var(--dark-theme-text"}}>
                 <BiSolidBellRing className="text-xl mt-0" />
                 <button className="ml-1 py-1 " onClick={() => setIsSubscribe(false)}>
                   Subscribed
@@ -66,7 +69,7 @@ export const VideoDescription = ({ info, channelInfo,videoId }) => {
               </div>
             ) : (
               <button
-                className="bg-black text-white font-semibold w-32 py-1 rounded-full ml-2"
+                className="font-semibold w-32 py-1 rounded-full ml-2" style={{background:isDark?"var(--light-theme-bgcolor)":"var(--dark-theme-bgcolor)",color:isDark?"var(--light-theme-text)":"var(--dark-theme-text"}}
                 onClick={() => setIsSubscribe(true)}
               >
                 Subscribe
@@ -74,7 +77,7 @@ export const VideoDescription = ({ info, channelInfo,videoId }) => {
             )}
           </div>
           </div>
-          <div className="bg-black text-white flex font-normal rounded-full items-center py-1 px-3">
+          <div className="flex font-normal rounded-full items-center py-1 px-3" style={{background:isDark?"var(--light-theme-bgcolor)":"var(--dark-theme-bgcolor)",color:isDark?"var(--light-theme-text)":"var(--dark-theme-text"}}>
             {isLike ? (
               <button
                 onClick={() => {
@@ -119,8 +122,8 @@ export const VideoDescription = ({ info, channelInfo,videoId }) => {
               </button>
             )}
           </div>
-          <div className="bg-black text-white flex font-normal rounded-full py-1 px-2 ">
-            <select  value={vidQuality} onChange={(e)=>setVidQuality(e.target.value)}  className="bg-black outline-none mx-1 border-r-2 border-white">
+          <div className=" flex font-normal rounded-full py-1 px-2 " style={{background:isDark?"var(--light-theme-bgcolor)":"var(--dark-theme-bgcolor)",color:isDark?"var(--light-theme-text)":"var(--dark-theme-text"}}>
+            <select  value={vidQuality} onChange={(e)=>setVidQuality(e.target.value)}  className=" outline-none mx-1 border-r-2 border-white" style={{background:isDark?"var(--light-theme-bgcolor)":"var(--dark-theme-bgcolor)",color:isDark?"var(--light-theme-text)":"var(--dark-theme-text"}}>
               <option value="137">1080p</option>
               <option value="136">720p</option>
               <option value="135">480p</option>
@@ -134,7 +137,7 @@ export const VideoDescription = ({ info, channelInfo,videoId }) => {
           </div>
         </div>
       </div>
-      <div className=" m-2 p-2 \ bg-slate-100 rounded-md">
+      <div className=" m-2 p-2 \ bg-slate-100 text-black rounded-md">
         <div className="flex font-semibold ">
           <p>{formatNumber(viewCount)}</p>
           <p className="ml-3">{calculateTimeAgo(publishedAt)}</p>

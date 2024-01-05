@@ -74,7 +74,7 @@ const Header = () => {
   
   
   return (
-    <div className={`grid grid-flow-col h-16 p-2 shadow-lg items-center}`}>
+    <div className={`grid grid-flow-col h-16 p-2 shadow-lg items-center fixed right-0 left-0`} style={{background:isDark?"var(--dark-theme-bgcolor)":"var(--light-theme-bgcolor)",color:isDark?"var(--dark-theme-text)":"var(--light-theme-text"}}>
       <div className="flex col-span-1 gap-2 items-center  ">
         <GiHamburgerMenu
           className="text-2xl text-gray-400 cursor-pointer"

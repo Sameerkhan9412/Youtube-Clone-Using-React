@@ -24,12 +24,12 @@ const SearchResult = () => {
   const getResults = async () => {
     const data = await fetch(YOUTUBE_VIDEO_SEARCH_RESULT_API +api_key+"&q="+searchTerm);
     const json = await data.json();
-    // console.log(json.items);
+    console.log(json.items);
     setSearchResult(json.items);
   };
 
   return (
-    <div className={`${!isMenuOpen?"col-span-7":"col-span-5"} p-2 max-w-[100vw] overflow-hidden`}>
+    <div className={`${!isMenuOpen?"col-span-7":"col-span-5"} p-2 max-w-[100vw] overflow-hidden mt-16`}>
       <ButtonList/>
       <div className='h-[calc(100vh-7.8rem)]  overflow-y-scroll custom-scrollbar1 grid  grid-cols-1 px-24' >
       {searchResult.length === 0 ? (

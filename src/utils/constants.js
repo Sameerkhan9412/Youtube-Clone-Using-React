@@ -1,10 +1,10 @@
-export const YOUTUBE_VIDEO_API=`https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=10&regionCode=IN&key=`;
+export const YOUTUBE_VIDEO_API=`https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=20&regionCode=IN&key=`;
 
 export const YOUTUBE_SEARCH_SUGGESTION_API="http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
 
 export const LIVE_CHAT_MESSAGES_SHOWING_COUNT=20;
 
-export const YOUTUBE_VIDEO_SEARCH_RESULT_API ="https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&key=";
+export const YOUTUBE_VIDEO_SEARCH_RESULT_API ="https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=15&key=";
 
 export const COMMENTS_API =
   "https://www.googleapis.com/youtube/v3/commentThreads?textFormat=plainText&part=snippet&maxResults=50&key=";

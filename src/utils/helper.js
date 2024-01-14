@@ -43,3 +43,7 @@ export function generateRandomMsg(length) {
     }
     return result;
 }
+
+export const videoTitleLength=(title,lastIndex)=>{
+  return title.length>75?(title.substring(0,lastIndex)+"..."):title;
+}

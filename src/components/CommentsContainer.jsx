@@ -4,6 +4,7 @@ import { calculateTimeAgo } from "../utils/constants";
 import { useSearchParams } from "react-router-dom";
 import { FiThumbsUp, FiThumbsDown } from "react-icons/fi";
 import { COMMENTS_API } from "../utils/constants";
+import { FaHandPointRight,FaHandPointDown, FaChevronRight, FaChevronDown } from "react-icons/fa";
 
 const Comment = ({ data }) => {
   return (
@@ -38,7 +39,7 @@ const Comment = ({ data }) => {
   );
 };
 
-const CommentList = ({ comments }) => {
+const CommentList = ({ comments}) => {
   //Disclaimer: Don't use indexes as keys
   //Comment reply not found in API
   return comments?.map((comment, index) => (
@@ -53,6 +54,7 @@ const CommentList = ({ comments }) => {
 
 const CommentsContainer = () => {
   const [CommentsApi, setCommentsApi] = useState([]);
+  const [commentHeight,setCommentHeight]=useState(true);
 
   const [searchParams] = useSearchParams();
   const api_key=process.env.REACT_APP_YOUTUBE_KEY;
@@ -70,10 +72,16 @@ const CommentsContainer = () => {
     setCommentsApi(json.items);
   };
 
+  const toggleCommentHeight=()=>{
+    setCommentHeight(!commentHeight);
+  }
+
   return (
-    <div className="m-5 p-2">
-      <h1 className="text-l font-bold">{CommentsApi?.length} Comments</h1>
-      <CommentList comments={CommentsApi} />
+    <div className=" p-2">
+      <h1 className="text-l font-bold flex gap-2 items-center cursor-pointer" onClick={()=>toggleCommentHeight()}>{commentHeight?<FaChevronDown className="text-2xl"/>:<FaChevronRight className="text-2xl"/>}<span>{CommentsApi?.length}  Comments</span></h1>
+      <div className={`${commentHeight?"h-fit":"h-0"} overflow-hidden`}>
+      <CommentList comments={CommentsApi} flag={commentHeight} />
+      </div>
     </div>
   );
 };

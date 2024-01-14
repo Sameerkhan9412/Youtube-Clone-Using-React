@@ -28,6 +28,7 @@
 }
 .custom-scrollbar2::-webkit-scrollbar{
     width: 0;
+    height: 6px;
 }
 .custom-scrollbar1::-webkit-scrollbar-thumb{
     background: gray;
@@ -36,6 +37,12 @@
 
 .shimmer-animation{
     animation:shimmer 2s infinite;
+}
+
+.searchToggleBtn{
+    position: absolute;
+    left: 0;
+    right: 0;
 }
 @keyframes shimmer {
     0%{

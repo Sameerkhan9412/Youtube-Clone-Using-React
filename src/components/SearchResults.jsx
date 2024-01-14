@@ -29,9 +29,8 @@ const SearchResult = () => {
   };
 
   return (
-    <div className={`${!isMenuOpen?"col-span-7":"col-span-5"} p-2 max-w-[100vw] overflow-hidden mt-16`}>
-      <ButtonList/>
-      <div className='h-[calc(100vh-7.8rem)]  overflow-y-scroll custom-scrollbar1 grid  grid-cols-1 px-24' >
+    <div className={`${!isMenuOpen?"col-span-7":"col-span-5"} px-2 w-full mt-16`}>
+      <div className='h-[calc(100vh-4rem)]  w-full overflow-y-scroll custom-scrollbar1 grid  grid-cols-1 gap-4 max-w-[1400px] mx-auto' >
       {searchResult.length === 0 ? (
         <SearchShimmer /> // Render the shimmer component when searchResult is empty
         ) : (

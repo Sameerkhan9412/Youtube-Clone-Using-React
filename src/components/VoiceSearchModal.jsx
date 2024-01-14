@@ -22,7 +22,7 @@ const VoiceSearchModal = ({data}) => {
   }
 
   return (
-    <div className=' translate-y-1/2 h-[90vh] w-[90vw] max-sm:w-[90vw] max-lg:w-[80vw] max-xl:w-[50vw] translate-x-1/2 border-2 rounded-md absolute z-50 overflow-y-hidden flex  flex-col items-center justify-between ' style={{background:isDark?"var(--dark-theme-bgcolor)":"var(--light-theme-bgcolor)",border:isDark?"2px solid var(--light-theme-bgcolor)":"2px solid var(--dark-theme-bgcolor)",color:isDark?"var(--dark-theme-text)":"var(--light-theme-text"}}>
+    <div className='h-[300px] w-[400px] absolute z-50 right-0 translate-x-[-100%] translate-y-[100%] flex flex-col justify-between ' style={{background:isDark?"var(--dark-theme-bgcolor)":"var(--light-theme-bgcolor)",border:isDark?"2px solid var(--light-theme-bgcolor)":"2px solid var(--dark-theme-bgcolor)",color:isDark?"var(--dark-theme-text)":"var(--light-theme-text"}}>
       <h1 className='text-2xl'>Start Listening</h1>
       <div className='text-2xl h-2'>{transcript}</div>
       <div className='text-4xl mx-auto flex gap-4 my-3'>

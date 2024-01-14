@@ -7,20 +7,20 @@ const SearchResultsCard = ({ info }) => {
   const { snippet} = info;
   const {title,thumbnails,channelTitle,description,publishedAt}=snippet;
   return (
-    <div className="space-y-2 mb-2 md:h-52 md:m-2 md:my-3 flex-col md:flex-row flex cursor-pointer p-1 rounded-lg">
-      <div className="flex bg-cover">
+    <div className="">
+      <div className="bg-cover flex flex-col grid-cols-5 items-center gap-2 md:grid ">
         <img
-          className=" md:w-fit w-full rounded-xl bg-cover"
+          className="w-full md:col-span-2 rounded-xl bg-cover aspect-video mx-auto"
           src={thumbnails?.medium?.url}
           alt="thumbnail"
         />
-        <div className="ml-4">
-          <p className="font-extrabold">{title}</p>
-          <p className="flex mt-4 items-center text-sm font-semibold text-gray-700">
+        <div className="w-full md:col-span-3">
+          <p className="font-bold text-lg line-clamp-2">{title}</p>
+          <p className="flex md:mt-2 items-center text-sm font-extralight">
             {channelTitle} <BsDot />
              {calculateTimeAgo(publishedAt)}{" "}
           </p>
-          <p className="mt-4 font-medium text text-gray-600 ">{description}</p>
+          <p className="mt-2 text-sm line-clamp-2 hidden md:visible">{description}</p>
         </div>
       </div>
     </div>
@@ -31,16 +31,17 @@ export const WatchPageSearchResultsCard = ({ info }) => {
   const { snippet} = info;
   const {title,thumbnails,channelTitle,description,publishedAt}=snippet;
   return (
-    <div className="w-full h-1/2 grid grid-cols-2 items-center mt-2">
+    // <div className="w-full h-1/2 grid grid-cols-2 items-center mt-2 gap-2">
+    <div className="w-full h-1/2 flex flex-col md:grid grid-cols-2  mt-2 gap-2 md:items-center ">
         <img
-          className="bg-cover object-cover rounded-lg"
+          className="bg-cover object-cover rounded-lg w-full"
           src={thumbnails?.medium?.url}
           alt="thumbnail"
         />
-        <div className="ml-4">
-          <p className="font-bold">{title}</p>
-          <p className="flex mt-4 items-center text-sm font-semibold text-gray-700">
-            {channelTitle} <BsDot />
+        <div className="">
+          <p className="font-bold line-clamp-2">{title}</p>
+          <p className="flex  items-center text-sm font-semibold text-gray-700">
+            {channelTitle} <BsDot /> {calculateTimeAgo(publishedAt)}{" "}
           </p>
         </div>
       </div>

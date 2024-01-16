@@ -45,7 +45,6 @@ const Header = () => {
     const data = await fetch(YOUTUBE_SEARCH_SUGGESTION_API + searchQuery);
     const json = await data.json();
     setSuggestions(json[1]);
-    // console.log(json[1]);
     // update cache
     dispatch(
       cacheResults({
@@ -72,10 +71,7 @@ const Header = () => {
     console.log(voiceSearchModel);
   }
   const toggleSearchBtn=()=>{
-    console.log(searchToggle)
     setSearchToggle(true);
-    console.log("i am cil")
-    console.log(searchToggle)
   }
   const setVar=()=>{
     setSearchToggle(false);

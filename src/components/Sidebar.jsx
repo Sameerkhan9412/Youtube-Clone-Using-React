@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { CiHome, CiMusicNote1 } from "react-icons/ci";
 import { useSelector } from 'react-redux';
 
@@ -10,13 +10,21 @@ import { HiOutlineLightBulb, HiOutlineNewspaper, HiOutlineSignal, HiOutlineTroph
 import {AiOutlineExclamationCircle, AiOutlineFire, AiOutlineFlag, AiOutlineQuestionCircle, AiOutlineSetting, AiOutlineShopping} from "react-icons/ai"
 import {PiCoatHanger, PiFilmSlate, PiGameController} from 'react-icons/pi'
 import {TbBrandYoutubeKids} from 'react-icons/tb'
+import { useLocation } from 'react-router-dom';
 const Sidebar = () => {
   const isMenuOpen=useSelector(store=>store.app.isMenuOpen);
+  const [flag,setFlag]=useState(false);
+  const location=useLocation();
+  const isDark=useSelector(store=>store.theme.isDark);
+
   // early return pattern
+  useEffect(()=>{
+    setFlag(location.pathname.includes("watch"));
+  },[location.pathname])
   if(!isMenuOpen) return null;
   
   return (
-    <div className='p-2 shadow-lg col-span-1 h-[calc(100vh-4rem)] overflow-y-scroll custom-scrollbar1 mt-16'>
+    <div className={`p-2 pt-0 shadow-lg col-span-1 h-[calc(100vh-4rem)] overflow-y-scroll custom-scrollbar1 mt-16 absolute bg-black ${flag?"lg:absolute":"lg:relative"} `} style={{background:isDark?"var(--dark-theme-bgcolor)":"var(--light-theme-bgcolor)",color:isDark?"var(--dark-theme-text)":"var(--light-theme-text"}}>
       <ul className='text-sm'>
         <li className='sidebarList'><GoHome className='mr-3 text-2xl'/> Home</li>
         <li className='sidebarList '><SiYoutubeshorts className='mr-3 text-2xl'/> Shorts</li>

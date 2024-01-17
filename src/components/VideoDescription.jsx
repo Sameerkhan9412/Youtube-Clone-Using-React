@@ -79,7 +79,7 @@ export const VideoDescription = ({ info, channelInfo,videoId }) => {
               )}
             </div>
           </div>
-          <div className="flex gap-2 justify-between w-full overflow-x-scroll lg:justify-end lg:overflow-visible">
+          <div className="flex gap-2 justify-between w-full overflow-x-scroll custom-scrollbar2 lg:justify-end lg:overflow-visible">
             <div className="flex font-normal rounded-full items-center py-1 px-3" style={{background:isDark?"var(--light-theme-bgcolor)":"var(--dark-theme-bgcolor)",color:isDark?"var(--light-theme-text)":"var(--dark-theme-text"}}>
               {isLike ? (
                 <button
@@ -143,13 +143,13 @@ export const VideoDescription = ({ info, channelInfo,videoId }) => {
           </div>
         </div>
       </div>
-      <div className=" p-1 my-1 bg-slate-100 text-black rounded-md">
+      <div className={`p-1 my-1 rounded-md ${isDark?"bg-gray-700 text-white":"bg-gray-400 text-black"} `}>
         <div className="flex font-semibold ">
           <p>{formatNumber(viewCount)}</p>
           <p className="ml-3">{calculateTimeAgo(publishedAt)}</p>
         </div>
         <div>
-          <p>{truncatedDescription}</p>
+          <p >{truncatedDescription}</p>
           <button
             className="font-bold"
             onClick={() => setShowDescription(!showDescription)}

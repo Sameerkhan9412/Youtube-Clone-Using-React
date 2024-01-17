@@ -11,6 +11,7 @@ const LiveChat = () => {
   const [showChat, setShowChat] = useState(true);
   const dispatch = useDispatch();
   const chatMessagesList = useSelector((store) => store.chat.messages);
+  const isDark=useSelector(store=>store.theme.isDark);
 
   useEffect(() => {
     const i = setInterval(() => {
@@ -31,23 +32,24 @@ const LiveChat = () => {
     console.log(showChat);
   };
 
+
   return (
     <>
-      <h1 className="border-2 p-2 border-b-0 rounded-md rounded-b-none flex items-center gap-2">
+      <h1 className={`border-2 p-2 border-b-0 rounded-md rounded-b-none flex items-center gap-2 ${isDark?"border-white":"border-black"} cursor-pointer`} onClick={() => toggleChat()} >
         Live Chat <FaAngleDown />
       </h1>
-      <div className={`${showChat?"h-[340px]":"h-0"} overflow-hidden`}>
+      <div className={`${showChat?"h-[350px]":"h-0"} overflow-hidden ${isDark?"light-border":"dark-border"}`}>
         <div
           className={`overflow-y-scroll custom-scrollbar1 border-2 border-b-0 h-[300px]`}
         >
-          <div className="flex flex-col p-2">
+          <div className="flex flex-col p-2 overflow-x-hidden">
             {chatMessagesList.map((data) => (
               <ChatMessage name={data.name} message={data.message} />
             ))}
           </div>
         </div>
         <form
-          className="w-full flex items-center gap-2 p-1 border-2 border-b-0"
+          className={`w-full flex items-center gap-2 py-1  border-t-2 ${isDark?"border-white text-white bg-black":" text-black bg-white border-black"}`}
           onSubmit={(e) => {
             e.preventDefault();
             // console.log("On form submit", liveMessage);
@@ -61,7 +63,7 @@ const LiveChat = () => {
           }}
         >
           <input
-            className="w-[90%] p-1 rounded-md outline-none"
+            className={`w-[90%] p-1 rounded-md outline-none border-2 ml-2 ${isDark?"border-white text-white bg-black":" text-black bg-white border-black"}`}
             type="text"
             name=""
             id=""
@@ -75,8 +77,8 @@ const LiveChat = () => {
         </form>
       </div>
       <button
-        className="p-2 w-full rounded-md border-2 rounded-t-none font-bold"
-        onClick={() => toggleChat()}
+        className={`p-2 w-full rounded-md border-2 rounded-t-none font-bold ${isDark?"border-white text-white bg-black":" text-black bg-white border-black"}`}
+         onClick={() => toggleChat()}
       >
         {showChat ? "Hide Chat" : "Show Chat"}
       </button>

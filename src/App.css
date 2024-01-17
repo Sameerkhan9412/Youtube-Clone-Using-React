@@ -38,6 +38,12 @@
 .shimmer-animation{
     animation:shimmer 2s infinite;
 }
+.dark-border{
+    border: 2px solid black;
+}
+.light-border{
+    border: 2px solid white;
+}
 
 .searchToggleBtn{
     position: absolute;

@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import { GoHome, GoStopwatch, GoThumbsup, GoVideo } from "react-icons/go";
 import { SiYoutubemusic, SiYoutubeshorts, SiYoutubestudio } from "react-icons/si";
-import { MdOutlinePodcasts, MdOutlineUserCircle, MdSubscriptions } from "react-icons/md";
+import { MdOutlinePodcasts, MdOutlineUserCircle, MdSubscriptions,MdOutlineSubscriptions } from "react-icons/md";
 import { FaChevronRight, FaFileVideo, FaHistory, FaUser, FaViadeoSquare, FaVideo, FaYoutube } from "react-icons/fa";
 import { HiOutlineLightBulb, HiOutlineNewspaper, HiOutlineSignal, HiOutlineTrophy, HiOutlineUserCircle } from "react-icons/hi2";
 import {AiOutlineExclamationCircle, AiOutlineFire, AiOutlineFlag, AiOutlineQuestionCircle, AiOutlineSetting, AiOutlineShopping} from "react-icons/ai"
@@ -28,7 +28,7 @@ const Sidebar = () => {
       <ul className='text-sm'>
         <li className='sidebarList'><GoHome className='mr-3 text-2xl'/> Home</li>
         <li className='sidebarList '><SiYoutubeshorts className='mr-3 text-2xl'/> Shorts</li>
-        <li className='sidebarList '><MdSubscriptions className='mr-3 text-2xl'/> Subscriptions</li>
+        <li className='sidebarList '><MdOutlineSubscriptions className='mr-2 text-2xl'/> Subscriptions</li>
         <hr className='my-2' />
         <li className='sidebarList '>You <FaChevronRight className='mr-3 text-1xl'/></li>
         <li className='sidebarList'><HiOutlineUserCircle className='mr-3 text-2xl'/> Your Channel</li>

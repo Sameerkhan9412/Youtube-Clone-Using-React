@@ -5,8 +5,8 @@ const ChatMessage = ({name,message}) => {
 
   return (
     <div className='flex items-center my-[2px] '>
-        <FaUser className='mr-2'/>
-        <span className='font-bold text-gray-500 mr-2'>{name}</span>
+        <img className='mr-2 w-8 h-8 rounded-full ' src={name.logo}/>
+        <span className='font-bold text-gray-500 mr-2'>{name.name}</span>
         <span>{message}</span>
     </div>
   )

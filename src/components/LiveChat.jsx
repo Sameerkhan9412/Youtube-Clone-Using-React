@@ -55,7 +55,7 @@ const LiveChat = () => {
             // console.log("On form submit", liveMessage);
             dispatch(
               addMessage({
-                name: "sameer",
+                name: {name:"Sameer Khan",logo:"https://lh3.googleusercontent.com/ogw/ANLem4bm34G76dq6Beba_O5pLQeKirit7JHoliNCnFyv=s64-c-mo"},
                 message: liveMessage,
               })
             );

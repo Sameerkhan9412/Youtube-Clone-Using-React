@@ -153,7 +153,8 @@ const Header = () => {
         <Theme/>
         <GoDeviceCameraVideo className="text-xl max-sm:hidden "/>
         <IoIosNotificationsOutline className="text-xl max-sm:hidden"/>
-        <FaUserCircle  />
+        {/* <FaUserCircle  /> */}
+        <img src={"https://lh3.googleusercontent.com/ogw/ANLem4bm34G76dq6Beba_O5pLQeKirit7JHoliNCnFyv=s64-c-mo"} alt="logo" className="w-8 rounded-full" />
       </div>
       {
         voiceSearchModel && <VoiceSearchModal data={{searchQuery,setSearchQuery,setVoiceSearchModal}}/>

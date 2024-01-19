@@ -31,7 +31,6 @@ export const WatchPageSearchResultsCard = ({ info }) => {
   const { snippet} = info;
   const {title,thumbnails,channelTitle,description,publishedAt}=snippet;
   return (
-    // <div className="w-full h-1/2 grid grid-cols-2 items-center mt-2 gap-2">
     <div className="w-full h-1/2 flex flex-col md:grid grid-cols-2  mt-2 gap-2 md:items-center ">
         <img
           className="bg-cover object-cover rounded-lg w-full"

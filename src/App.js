@@ -34,7 +34,7 @@ export const appRouter=createBrowserRouter([{
     },
     {
       path:"watch",
-      element:<WatchPage/>,
+      element:<WatchPage/>
     },
     {
       path: "Result",

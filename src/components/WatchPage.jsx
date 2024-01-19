@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import SuggestionVideo from "./SuggestionVideo";
 import VideoDescription from "./VideoDescription";
 import { VIDEO_API } from "../utils/constants";
+import { VideoInfoShimmer } from "./WatchPageShimmers";
 
 const WatchPage = () => {
   const dispatch = useDispatch();
@@ -19,8 +20,9 @@ const WatchPage = () => {
   const [videos, setVideos] = useState([]);
   const [channel, setChannel] = useState([]);
   const [searchTag,setSearchTag]=useState("trending video");
-
+  
   useEffect(() => {
+    console.log("this is video data",videos);
     getVideos();
   }, [desiredId]); // Trigger getVideos when desiredId changes
 
@@ -35,7 +37,6 @@ const WatchPage = () => {
       getChannel(channelId);
     }
   };
-
   const getChannel = async (channelId) => {
     const data = await fetch(
       `https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=${channelId}&key=${api_key}`
@@ -47,7 +48,7 @@ const WatchPage = () => {
   useEffect(() => {
     dispatch(closeMenu());
   }, []);
-
+  console.log("vidoe info",videos);
   return (
     <div className="col-span-7 grid grid-cols-7 gap-3 mx-auto mt-16 px-4 max-w-[1700px] h-[calc(100vh-4rem)]  overflow-hidden overflow-y-scroll custom-scrollbar1 max-md:px-2" >
     <div className="col-span-4 max-md:col-span-7 ">
@@ -59,7 +60,9 @@ const WatchPage = () => {
         allowFullScreen
         className="w-full aspect-video rounded-md"
       ></iframe>
-      <VideoDescription info={videos} channelInfo={channel} videoId={desiredId}/>
+      {videos.length===0?<VideoInfoShimmer/>:
+        <VideoDescription info={videos} channelInfo={channel} videoId={desiredId}/>
+      }
       <CommentsContainer/>
       </div>
       <div className="col-span-3 max-md:col-span-7">

@@ -5,6 +5,7 @@ import { useSearchParams } from "react-router-dom";
 import { FiThumbsUp, FiThumbsDown } from "react-icons/fi";
 import { COMMENTS_API } from "../utils/constants";
 import { FaHandPointRight,FaHandPointDown, FaChevronRight, FaChevronDown } from "react-icons/fa";
+import { CommentsShimmers } from "./WatchPageShimmers";
 
 const Comment = ({ data }) => {
   return (
@@ -75,12 +76,15 @@ const CommentsContainer = () => {
   const toggleCommentHeight=()=>{
     setCommentHeight(!commentHeight);
   }
-
   return (
     <div className=" p-2">
       <h1 className="text-l font-bold flex gap-2 items-center cursor-pointer" onClick={()=>toggleCommentHeight()}>{commentHeight?<FaChevronDown className="text-2xl"/>:<FaChevronRight className="text-2xl"/>}<span>{CommentsApi?.length}  Comments</span></h1>
       <div className={`${commentHeight?"h-fit":"h-0"} overflow-hidden`}>
-      <CommentList comments={CommentsApi} flag={commentHeight} />
+        {
+          CommentsApi.length===0?(<CommentsShimmers/>):(
+            <CommentList comments={CommentsApi} flag={commentHeight} />
+          )
+        }
       </div>
     </div>
   );

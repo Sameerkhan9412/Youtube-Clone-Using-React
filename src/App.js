@@ -10,6 +10,7 @@ import MainContainer from "./components/MainContainer";
 import WatchPage from "./components/WatchPage";
 import SearchShimmer from "./components/SearchShimmer";
 import SearchResult from "./components/SearchResults";
+import { Toaster } from "react-hot-toast";
 function App() {
   return (
     <Provider store={store}>
@@ -21,6 +22,7 @@ function App() {
                 <meta name="description" content="This is my video streaming website" />
             </Helmet>
     <Body/>
+    <Toaster/>
     </Provider>
   );
 }

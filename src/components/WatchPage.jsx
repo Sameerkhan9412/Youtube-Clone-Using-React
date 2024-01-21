@@ -22,7 +22,7 @@ const WatchPage = () => {
   const [searchTag,setSearchTag]=useState("trending video");
   
   useEffect(() => {
-    console.log("this is video data",videos);
+    // console.log("this is video data",videos);
     getVideos();
   }, [desiredId]); // Trigger getVideos when desiredId changes
 
@@ -48,7 +48,7 @@ const WatchPage = () => {
   useEffect(() => {
     dispatch(closeMenu());
   }, []);
-  console.log("vidoe info",videos);
+  // console.log("vidoe info",videos);
   return (
     <div className="col-span-7 grid grid-cols-7 gap-3 mx-auto mt-16 px-4 max-w-[1700px] h-[calc(100vh-4rem)]  overflow-hidden overflow-y-scroll custom-scrollbar1 max-md:px-2" >
     <div className="col-span-4 max-md:col-span-7 ">

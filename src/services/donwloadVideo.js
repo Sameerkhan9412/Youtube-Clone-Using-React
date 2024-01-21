@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import { VideoDownloadEndpoint } from "./api";
 const {VIDEO_DOWNLOAD_API}=VideoDownloadEndpoint;
 export const downloadVideoFunc=(videoId,quality)=>{
@@ -7,7 +8,9 @@ export const downloadVideoFunc=(videoId,quality)=>{
         document.body.appendChild(anchor);
         anchor.click();
         document.body.removeChild(anchor);
-        
+        toast('Downloading Started', {
+            icon: '⬇️',
+          });
     } catch (error) {
         console.log(error);
     }

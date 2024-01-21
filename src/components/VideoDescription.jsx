@@ -12,6 +12,7 @@ import { BiSolidBellRing } from "react-icons/bi";
 import { MdFileDownload, MdFolderShared } from "react-icons/md";
 import { downloadVideoFunc } from "../services/donwloadVideo";
 import { IoIosShareAlt } from "react-icons/io";
+import toast, { Toaster } from 'react-hot-toast';
 
 export const VideoDescription = ({ info, channelInfo,videoId }) => {
   const [showDescription, setShowDescription] = useState(false);
@@ -30,8 +31,6 @@ export const VideoDescription = ({ info, channelInfo,videoId }) => {
   const [isDisLike, setIsDisLike] = useState(false);
   const [vidQuality,setVidQuality]=useState("18");
   const isDark=useSelector(store=>store.theme.isDark);
-  
-
   const truncatedDescription = showDescription
   ? description
     : `${description?.substring(0, 200)}...`;
@@ -41,7 +40,29 @@ export const VideoDescription = ({ info, channelInfo,videoId }) => {
     const videoDownload=(videoId,quality)=>{
       downloadVideoFunc(videoId,quality);
     }
-  //optional chaining is very important
+    const notify = () => toast('Link Copied', {
+      icon: '🔥',
+    });
+    const copyVidoLink=()=>{
+      const currentUrl = window.location.href;
+
+      // Create a temporary input element
+      const tempInput = document.createElement('input');
+      tempInput.value = currentUrl;
+      document.body.appendChild(tempInput);
+
+      // Select the input value
+      tempInput.select();
+      tempInput.setSelectionRange(0, 99999); // For mobile devices
+
+      // Copy the selected text
+      document.execCommand('copy');
+
+      // Remove the temporary input element
+      document.body.removeChild(tempInput);
+      notify();
+
+    }
   return (
     <div className="pt-1">
       <div className="">
@@ -137,7 +158,7 @@ export const VideoDescription = ({ info, channelInfo,videoId }) => {
                 <MdFileDownload className="" />
               <p className="">Download</p></button>
             </div>
-            <div className="px-2 rounded-md flex items-center lg:hidden" style={{background:isDark?"var(--light-theme-bgcolor)":"var(--dark-theme-bgcolor)",color:isDark?"var(--light-theme-text)":"var(--dark-theme-text"}}>
+            <div className="px-2 rounded-md flex items-center  cursor-pointer " style={{background:isDark?"var(--light-theme-bgcolor)":"var(--dark-theme-bgcolor)",color:isDark?"var(--light-theme-text)":"var(--dark-theme-text"}} onClick={()=>copyVidoLink()}>
               <IoIosShareAlt/><p>Share</p>
             </div>
           </div>
